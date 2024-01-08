@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_connectivity_app/core/utils/string_constants.dart';
 import 'package:flutter_connectivity_app/features/connection/presentation/bloc/connectivity_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:speed_test_dart/classes/server.dart';
-import 'package:speed_test_dart/speed_test_dart.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,8 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  SpeedTestDart tester = SpeedTestDart();
-  List<Server> bestServersList = [];
+ 
   @override
   void initState() {
     super.initState();
@@ -69,13 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 context.read<ConnectivityBloc>().add(ConnectivityStopEvent());
               },
-              title: "Stop Services"),
+              title: StringConstants.stopServiceTitle),
           buttonWidget(
               context: context,
               onPressed: () {
                 context.read<ConnectivityBloc>().add(ConnectivityStartEvent());
               },
-              title: "Start Services"),
+              title: StringConstants.startServiceTitle),
         ],
       ),
     );

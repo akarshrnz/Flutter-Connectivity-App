@@ -31,7 +31,11 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   FutureOr<void> _initBackgroundService(
       ConnectivityInitEvent event, Emitter<ConnectivityState> emit) async {
     var res = await _initConnectionUsecase.call(NoParams());
-    if (res is DataSuccess) {}
+    if (res is DataSuccess) {
+    } else {
+      AppConstWidget.toastMsg(
+          msg: StringConstants.somethingWentWrong, backgroundColor: Colors.red);
+    }
   }
 
   FutureOr<void> _startBackgroundService(
@@ -39,7 +43,8 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
     var res = await _startConnectionUsecase.call(NoParams());
     if (res is DataSuccess) {
       AppConstWidget.toastMsg(
-          msg: StringConstants.serviceStartedMessage, backgroundColor: Colors.green);
+          msg: StringConstants.serviceStartedMessage,
+          backgroundColor: Colors.green);
     }
   }
 
@@ -48,7 +53,8 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
     var res = await _stopConnectionUsecase.call(NoParams());
     if (res is DataSuccess) {
       AppConstWidget.toastMsg(
-          msg: StringConstants.serviceStoppedMessage, backgroundColor: Colors.green);
+          msg: StringConstants.serviceStoppedMessage,
+          backgroundColor: Colors.green);
     }
   }
 }
